@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+	<header th:insert="blocks/header :: header"></header>
+	
+	<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+	  <h1 class="display-4">Корзина товаров</h1>
+	  <p class="lead">Эти товары ожидают вашей покупки</p>
+	  <div class="container mt-5 mb-5">
+	  	<div th:each="bag : ${bag}" class="alert alert-info mt-2">
+				  	<h4 th:text="'Наименование товара: ' + ${bag.title}"/>
+				  	<strong><p th:text="'Цена: ' + ${bag.price} + ' рублей'"/></strong>
+				  	<form th:action="'/bag/' + ${bag.id} + '/remove'" method="post">
+					<button class="btn btn-warning" type="submit">Удалить товар из корзины</button>
+					</form>
+		</div>
+		<br>
+		  	<form action="/" method="get">	
+				<button type="submit" class="btn btn-success">Вернуться к выбору</button>
+			</form>
+		<br>
+			<form action="/order" method="post">
+				<button type="submit" class="btn btn-success">Оформить заказ</button>
+			</form>
+	</div>
+	<div>
+		<div th:insert="blocks/footer :: footer"></div>
+	</div>
+</body>
+</html>
