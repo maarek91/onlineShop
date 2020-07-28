@@ -13,6 +13,9 @@
 		<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
 			<h1 class="display-4">Вы успешно сделали заказ!!!</h1>
 			
+			
+			<h4 th:text="'Номер вашего заказа: ' + ${id}"/>
+			
 			<form action="/" method="get">	
 				<button type="submit" class="btn btn-success">Вернуться к выбору</button>
 			</form>

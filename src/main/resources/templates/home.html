@@ -23,6 +23,7 @@
 				<form action="/bag" method="post">
 				  	<input type="hidden" name="title" th:value="${objects.title}"/>
 					<input type="hidden" name="price" th:value="${objects.price}"/>
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 					<button type="submit" class="btn btn-success">Добавить в корзину</button>
 				</form>
 			</div>

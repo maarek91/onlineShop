@@ -26,11 +26,20 @@ public class OrderController {
 	@PostMapping("/order")
 	public String order(Model model) {
 			Iterable<Bag> bag = bagRepo.findAll();
+			Long id;
 			for (Bag x: bag) {
 				Order order = new Order(x.getTitle(), x.getPrice());
 				orderRepo.save(order);
+				id = order.getId();
 			}
 			bagRepo.deleteAll();
 			return "order";
+	}
+	
+	@GetMapping("/orderbag")
+	public String orderBag(Model model) {
+			Iterable<Order> order = orderRepo.findAll();
+			model.addAttribute("order", order);
+			return "orderBag";
 	}
 }
